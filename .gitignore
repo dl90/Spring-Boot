@@ -1,0 +1,9 @@
+**/.idea
+**/.idea_modules
+**/.DS_Store
+
+**/out
+**/target
+
+**/mvnw*
+**/.mvn

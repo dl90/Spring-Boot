@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Support</title>
+</head>
+<body>
+<form action="#" th:action="@{/form/support}" th:object="${supportDetails}" method="post">
+    <div>
+        <input type="text" th:field="*{id}" placeholder="id">
+        <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}">*{id}</span>
+    </div>
+
+    <div>
+        <input type="text" th:field="*{name}" placeholder="name">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    </div>
+
+    <div>
+        <input type="text" th:field="*{email}" placeholder="email">
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+
+    <div>
+        <input type="radio" th:field="*{gender}" value="male">Male
+        <input type="radio" th:field="*{gender}" value="female">female
+        <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
+    </div>
+
+    <div>
+        <label>Membership</label>
+        <select th:field="*{membership}">
+            <option th:each="item : ${membershipList}" th:value="${item}" th:text="${item}">
+        </select>
+        <span th:if="${#fields.hasErrors('membership')}" th:errors="*{membership}"></span>
+    </div>
+
+    <div>
+    <textarea th:field="*{content}" placeholder="content">
+    </textarea>
+        <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
+    </div>
+
+    <input type="submit" value="submit">
+    <input type="reset" value="reset">
+</form>
+</body>
+</html>
