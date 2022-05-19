@@ -1,0 +1,61 @@
+
+spring:
+  profiles:
+    active: h2
+
+---
+
+spring:
+  profiles: mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo
+    username: demo
+    password: demo
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format-sql: true
+
+    # --- spring.jpa.hibernate.ddl-auto ---
+    # = create       : drops existing tables, then creates new tables
+    # = create-drop
+    # = update       : compared with the existing schema, updates the diff, never deletes existing tables or columns
+    # = validate     : validates whether the tables and columns exist, throws exception
+    # = none
+    # -------------------------------------
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+    generate-ddl: true
+#    show-sql: true
+
+hibernate:
+  dialect:
+    storage_engine: innodb
+
+---
+
+spring:
+  profiles: h2
+  datasource:
+    driver-class-name: org.h2.Driver
+    platform: org.hibernate.dialect.H2Dialect
+    url: jdbc:h2:mem:demo
+    username: demo
+    password: demo
+  h2:
+    console:
+      enabled: true #http://localhost:8080/h2-console
+
+  jpa:
+    properties:
+      hibernate:
+        format-sql: true
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+    generate-ddl: true
+#      show-sql: true
